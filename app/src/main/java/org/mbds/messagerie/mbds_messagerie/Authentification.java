@@ -1,6 +1,7 @@
 package org.mbds.messagerie.mbds_messagerie;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +13,8 @@ import android.widget.Toast;
 
 
 public class Authentification extends Activity  {
-    Button b1,b2;
-    EditText ed1,ed2;
+    Button buttonLogin,buttonFermer;
+    EditText editTextUsername,editTextPassword;
 
     TextView tx1;
     int counter = 3;
@@ -23,22 +24,32 @@ public class Authentification extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentification);
 
-        b1 = (Button)findViewById(R.id.button);
-        ed1 = (EditText)findViewById(R.id.editText);
-        ed2 = (EditText)findViewById(R.id.editText2);
+        buttonLogin = (Button)findViewById(R.id.buttonLogin);
+        editTextUsername = (EditText)findViewById(R.id.editTextUsername);
+        editTextPassword = (EditText)findViewById(R.id.editTextPassword);
 
-        b2 = (Button)findViewById(R.id.button2);
+        buttonFermer = (Button)findViewById(R.id.buttonFermer);
         tx1 = (TextView)findViewById(R.id.textView3);
         tx1.setVisibility(View.GONE);
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ed1.getText().toString().equals("admin") &&
-                        ed2.getText().toString().equals("admin")) {
+                if(editTextUsername.getText().toString().equals("admin") &&
+                        editTextPassword.getText().toString().equals("admin")) {
                     Toast.makeText(getApplicationContext(),
                             "Redirecting...",Toast.LENGTH_SHORT).show();
-                }else{
+
+                    Intent adminPage = new Intent(Authentification.this, AdminActivity.class);
+                    startActivity(adminPage);
+                } else if (editTextUsername.getText().toString().equals("user") &&
+                        editTextPassword.getText().toString().equals("user")) {
+                    Toast.makeText(getApplicationContext(),
+                            "Redirecting...", Toast.LENGTH_SHORT).show();
+
+                    Intent userPage = new Intent(Authentification.this, UserActivity.class);
+                    startActivity(userPage);
+                } else{
                     Toast.makeText(getApplicationContext(), "Wrong  Credentials",Toast.LENGTH_SHORT).show();
 
                             tx1.setVisibility(View.VISIBLE);
@@ -47,13 +58,13 @@ public class Authentification extends Activity  {
                     tx1.setText(Integer.toString(counter));
 
                     if (counter == 0) {
-                        b1.setEnabled(false);
+                        buttonLogin.setEnabled(false);
                     }
                 }
             }
         });
 
-        b2.setOnClickListener(new View.OnClickListener() {
+        buttonFermer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

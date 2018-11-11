@@ -19,17 +19,17 @@
         android:id = "@+id/textView"
         android:layout_below = "@+id/textview"
         android:layout_centerHorizontal = "true"
-        android:textColor = "#ff7aff24"
+        android:textColor = "#0000ff"
         android:textSize = "35dp" />
 
     <EditText
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:id = "@+id/editText"
+        android:id = "@+id/editTextUsername"
         android:hint = "Entrez votre username..."
         android:focusable = "true"
-        android:textColorHighlight = "#ff7eff15"
-        android:textColorHint = "#ffff25e6"
+        android:textColorHighlight = "#0000ff"
+        android:textColorHint = "#0000ff"
         android:layout_marginTop = "46dp"
         android:layout_below = "@+id/imageView"
         android:layout_alignParentLeft = "true"
@@ -50,13 +50,13 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/editTextPassword"
+        android:layout_below="@+id/editTextUsername"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
-        android:textColorHint="#ffff299f"
+        android:layout_alignRight="@+id/editTextUsername"
+        android:layout_alignEnd="@+id/editTextUsername"
+        android:textColorHint="#0000ff"
         android:hint="Entrez votre Password..." />
 
     <TextView
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="Nombre d'essai restant:"
         android:id="@+id/textView2"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editTextPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="25dp" />
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="S'authentifier"
-        android:id="@+id/button"
+        android:id="@+id/buttonLogin"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/textview"
         android:layout_toStartOf="@+id/textview" />
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fermer"
-        android:id="@+id/button2"
+        android:id="@+id/buttonFermer"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textview"
         android:layout_toEndOf="@+id/textview" />

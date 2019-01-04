@@ -21,7 +21,8 @@ public class MainActivity extends Activity {
     private EditText txtUsername;
     private Button btnLogout;
     private Button btnListeMessages;
-    private Button btnSendMessage;
+    private Button btnListeContacts;
+    private Button btnAjouterContact;
  
     private SQLiteHandler db;
     private SessionManager session;
@@ -35,6 +36,8 @@ public class MainActivity extends Activity {
         txtPassword = (EditText) findViewById(R.id.password);
         btnLogout = (Button) findViewById(R.id.btnLogout);
         btnListeMessages = (Button) findViewById(R.id.btnListeMessages);
+        btnListeContacts = (Button) findViewById(R.id.btnListeContacts);
+        btnAjouterContact = (Button) findViewById(R.id.btnAjouterContact);
 
  
         // session manager
@@ -66,13 +69,25 @@ public class MainActivity extends Activity {
                 logoutUser();
             }
         });
-
-        // Logout button click event
         btnListeMessages.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 ListeMessages();
+            }
+        });
+        btnListeContacts.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ListeContacts();
+            }
+        });
+        btnAjouterContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AjouterContact();
             }
         });
     }
@@ -95,6 +110,20 @@ public class MainActivity extends Activity {
     private void ListeMessages() {
         // Launching the login activity
         Intent intent = new Intent(MainActivity.this, MessageListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void ListeContacts() {
+        // Launching the login activity
+        Intent intent = new Intent(MainActivity.this, ListeContactsActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void AjouterContact() {
+        // Launching the login activity
+        Intent intent = new Intent(MainActivity.this, AjouterContactActivity.class);
         startActivity(intent);
         finish();
     }

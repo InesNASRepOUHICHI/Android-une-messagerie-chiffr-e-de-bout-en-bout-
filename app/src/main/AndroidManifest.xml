@@ -31,6 +31,8 @@
             android:label="@string/app_name"
             android:launchMode="singleTop" />
         <activity android:name=".activity.MessageListActivity" />
+        <activity android:name=".activity.ListeContactsActivity" />
+        <activity android:name=".activity.AjouterContactActivity"></activity>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.unice.messenger.messageriembds.Model.User;
 import edu.unice.messenger.messageriembds.R;
 import edu.unice.messenger.messageriembds.app.AppConfig;
 import edu.unice.messenger.messageriembds.app.AppController;
@@ -123,10 +124,12 @@ public class RegisterActivity extends Activity {
 
                 try {
                     String username = response.getString("username");
+                    String access_token = response.getString("access_token");
+                    User user = new User(username, password, access_token);
                     session.setLogin(true);
 
                     // Inserting row in users table
-                    db.addUser(username, password);
+                    db.addUser(user);
 
                     // Launch main activity
                     Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();

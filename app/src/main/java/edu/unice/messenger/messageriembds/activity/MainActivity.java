@@ -1,5 +1,6 @@
 package edu.unice.messenger.messageriembds.activity;
 
+import edu.unice.messenger.messageriembds.Model.User;
 import edu.unice.messenger.messageriembds.helper.SQLiteHandler;
 import edu.unice.messenger.messageriembds.helper.SessionManager;
 
@@ -44,10 +45,11 @@ public class MainActivity extends Activity {
         db = new SQLiteHandler(getApplicationContext());
 
         // Fetching user details from sqlite
-        HashMap<String, String> user = db.getUserDetails();
+        User user = db.getUserDetails();
  
-        String password = user.get("password");
-        String username = user.get("username");
+        String password = user.getPassword();
+        String username = user.getUsername();
+        String access_token = user.getAccess_token();
  
         // Displaying the user details on the screen
         txtPassword.setText(password);

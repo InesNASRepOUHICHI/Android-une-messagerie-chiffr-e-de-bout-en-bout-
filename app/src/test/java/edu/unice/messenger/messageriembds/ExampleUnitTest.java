@@ -1,4 +1,4 @@
-package org.mbds.messagerie.mbds_messagerie;
+package edu.unice.messenger.messageriembds;
 
 import org.junit.Test;
 

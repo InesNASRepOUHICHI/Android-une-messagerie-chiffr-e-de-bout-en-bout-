@@ -1,4 +1,4 @@
-package org.mbds.messagerie.mbds_messagerie;
+package edu.unice.messenger.messageriembds;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("org.mbds.messagerie.mbds_messagerie", appContext.getPackageName());
+        assertEquals("edu.unice.messenger.messageriembds", appContext.getPackageName());
     }
 }

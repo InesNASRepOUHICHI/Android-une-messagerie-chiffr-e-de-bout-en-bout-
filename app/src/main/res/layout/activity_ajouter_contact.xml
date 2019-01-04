@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@color/btn_login_bg"
-            android:text="@string/btn_login"
+            android:text="@string/btn_AjouterContact"
             android:textColor="@color/btn_contact" />
 
 

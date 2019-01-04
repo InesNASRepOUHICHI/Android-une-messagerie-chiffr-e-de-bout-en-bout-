@@ -124,15 +124,11 @@ public class RegisterActivity extends Activity {
 
                 try {
                     String username = response.getString("username");
-                    String access_token = response.getString("access_token");
-                    User user = new User(username, password, access_token);
-                    session.setLogin(true);
-
-                    // Inserting row in users table
-                    db.addUser(user);
+                    //String access_token = response.getString("access_token");
+                    User user = new User(username, password, null);
 
                     // Launch main activity
-                    Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Utilisateur créé. Essayer de s'authentifier!", Toast.LENGTH_LONG).show();
                     // Launch login activity
                     Intent intent = new Intent(
                             RegisterActivity.this,

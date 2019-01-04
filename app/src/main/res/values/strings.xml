@@ -10,7 +10,7 @@
     <string name="welcome">Bienvenue</string>
     <string name="btn_ListeMessages">Liste des messages</string>
     <string name="btn_ListeContacts">Liste des contacts</string>
-    <string name="btn_AjouterContact">Ajouter contact</string>
+    <string name="btn_AjouterContact">Inviter contact</string>
     <string name="btn_logout">Déconnexion</string>
     <string name="name">Nom complet</string>
     <string name="title_activity_message_list">message_list</string>

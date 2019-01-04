@@ -6,4 +6,7 @@ public class AppConfig {
  
     // Server user register url
     public static String URL_REGISTER = "http://baobab.tokidev.fr/api/createUser";
+
+    // Server send messages
+    public static String URL_SEND_MESSAGE = "http://baobab.tokidev.fr/api/sendMsg";
 }

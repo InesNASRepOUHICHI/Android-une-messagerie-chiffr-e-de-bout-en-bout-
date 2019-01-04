@@ -18,15 +18,20 @@ public class SQLiteHandler extends SQLiteOpenHelper {
  
     // Database Name
     private static final String DATABASE_NAME = "android_api";
- 
+
     // Login table name
     private static final String TABLE_USER = "user";
+    // Contact table name
+    private static final String TABLE_CONTACT = "contact";
+    // Message table name
+    private static final String TABLE_MESSAGE = "message";
  
-    // Login Table Columns names
+    // Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_ACCESS_TOKEN = "access_token";
+    private static final String KEY_MESSAGE = "message";
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,6 +44,16 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME
                 + " TEXT UNIQUE," + KEY_PASSWORD + " TEXT," + KEY_ACCESS_TOKEN + " TEXT" +")";
         db.execSQL(CREATE_LOGIN_TABLE);
+
+        String CREATE_CONTACT_TABLE = "CREATE TABLE " + TABLE_CONTACT + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME
+                + " TEXT UNIQUE" +")";
+        db.execSQL(CREATE_CONTACT_TABLE);
+
+        String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_USER + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME
+                + " TEXT," + KEY_MESSAGE + " TEXT" +")";
+        db.execSQL(CREATE_MESSAGE_TABLE);
  
         Log.d(TAG, "Database tables created");
     }
@@ -69,6 +84,33 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
  
         Log.d(TAG, "New user inserted into sqlite: " + id);
+    }
+
+
+    public void addContact(String contactUserName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USERNAME, contactUserName); // username
+
+        // Inserting Row
+        long id = db.insert(TABLE_CONTACT, null, values);
+        db.close(); // Closing database connection
+
+        Log.d(TAG, "New contact inserted into sqlite: " + id);
+    }
+
+    public void addMessage(String messageBody) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_MESSAGE, messageBody); // username
+
+        // Inserting Row
+        long id = db.insert(TABLE_MESSAGE, null, values);
+        db.close(); // Closing database connection
+
+        Log.d(TAG, "New contact inserted into sqlite: " + id);
     }
  
     /**

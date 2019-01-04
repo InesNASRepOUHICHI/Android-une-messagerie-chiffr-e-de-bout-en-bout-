@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
     private EditText txtPassword;
     private EditText txtUsername;
     private Button btnLogout;
+    private Button btnListeMessages;
+    private Button btnSendMessage;
  
     private SQLiteHandler db;
     private SessionManager session;
@@ -32,6 +34,7 @@ public class MainActivity extends Activity {
         txtUsername = (EditText) findViewById(R.id.username);
         txtPassword = (EditText) findViewById(R.id.password);
         btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnListeMessages = (Button) findViewById(R.id.btnListeMessages);
 
  
         // session manager
@@ -54,13 +57,22 @@ public class MainActivity extends Activity {
         // Displaying the user details on the screen
         txtPassword.setText(password);
         txtUsername.setText(username);
- 
+
         // Logout button click event
         btnLogout.setOnClickListener(new View.OnClickListener() {
- 
+
             @Override
             public void onClick(View v) {
                 logoutUser();
+            }
+        });
+
+        // Logout button click event
+        btnListeMessages.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                ListeMessages();
             }
         });
     }
@@ -79,4 +91,12 @@ public class MainActivity extends Activity {
         startActivity(intent);
         finish();
     }
+
+    private void ListeMessages() {
+        // Launching the login activity
+        Intent intent = new Intent(MainActivity.this, MessageListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

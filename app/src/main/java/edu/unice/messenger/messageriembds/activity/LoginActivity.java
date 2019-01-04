@@ -57,7 +57,6 @@ public class LoginActivity extends Activity {
 
         // SQLite database handler
         db = new SQLiteHandler(getApplicationContext());
- 
         // Session manager
         session = new SessionManager(getApplicationContext());
  

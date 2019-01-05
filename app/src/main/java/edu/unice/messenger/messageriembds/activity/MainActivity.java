@@ -1,6 +1,7 @@
 package edu.unice.messenger.messageriembds.activity;
 
 import edu.unice.messenger.messageriembds.Model.User;
+import edu.unice.messenger.messageriembds.helper.ContactUtils;
 import edu.unice.messenger.messageriembds.helper.SQLiteHandler;
 import edu.unice.messenger.messageriembds.helper.SessionManager;
 
@@ -115,6 +116,9 @@ public class MainActivity extends Activity {
     }
 
     private void ListeContacts() {
+
+        ContactUtils contactUtils = new ContactUtils();
+        contactUtils.setContactNameToDisplayHisMessages("ALL");
         // Launching the login activity
         Intent intent = new Intent(MainActivity.this, ListeContactsActivity.class);
         startActivity(intent);

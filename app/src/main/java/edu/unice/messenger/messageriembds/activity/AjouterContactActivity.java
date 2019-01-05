@@ -55,6 +55,7 @@ public class AjouterContactActivity extends AppCompatActivity {
                 if (!username.isEmpty()) {
                     // login user
                     EnvoyerInvitationContact(username);
+                    db.addContact(username);
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),

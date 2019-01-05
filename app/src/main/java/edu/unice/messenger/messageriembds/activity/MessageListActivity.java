@@ -18,20 +18,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import edu.unice.messenger.messageriembds.Model.Message;
 import edu.unice.messenger.messageriembds.Model.User;
 import edu.unice.messenger.messageriembds.R;
 import edu.unice.messenger.messageriembds.app.AppConfig;
 import edu.unice.messenger.messageriembds.app.AppController;
+import edu.unice.messenger.messageriembds.helper.ContactUtils;
 import edu.unice.messenger.messageriembds.helper.MessageListAdapter;
 import edu.unice.messenger.messageriembds.helper.RestClient;
 import edu.unice.messenger.messageriembds.helper.SQLiteHandler;
 
 public class MessageListActivity extends AppCompatActivity {
+    private static final Set<String> CONTACT_NAME_TO_DISPLAY_HIS_MESSAGES = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("ALL", "ALL")));
     private RecyclerView mMessageRecycler;
     private MessageListAdapter mMessageAdapter;
     private SQLiteHandler db;
@@ -44,12 +50,14 @@ public class MessageListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message_list);
 
         messageList = new ArrayList<Message>();
-        messageList.add(new Message("Hello From ADMIN", new User("admin", "admin", "admin")));
+        //messageList.add(new Message("Hello From ADMIN", new User("admin", "admin", "admin")));
 
 
         // SQLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
+        ContactUtils contactUtils = new ContactUtils();
+        final String contactNameToDisplayHisMessages = contactUtils.getContactNameToDisplayHisMessages();
 
         // Tag used to cancel the request
         String tag_json_req = "req_fetchMessage";
@@ -67,8 +75,12 @@ public class MessageListActivity extends AppCompatActivity {
 
                         // Get the current student (json object) data
                         String id = message.getString("id");
-                        messageList.add(new Message(message.getString("msg"), new User(message.getString("author"), null,null)));
+                        if ((contactNameToDisplayHisMessages.equals("ALL")) ||(contactNameToDisplayHisMessages.equals(message.getString("author")))){
+                            messageList.add(new Message(message.getString("msg"), new User(message.getString("author"), null,null)));
+                        }
                     }
+
+                    messageList.add(new Message("", new User("", "", "")));
 
                     mMessageRecycler = (RecyclerView) findViewById(R.id.reyclerview_message_list);
                     mMessageAdapter = new MessageListAdapter(MessageListActivity.this, messageList);

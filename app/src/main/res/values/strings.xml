@@ -9,7 +9,7 @@
     <string name="btn_link_to_login">Inscrit! S\'authentifier.</string>
     <string name="welcome">Bienvenue</string>
     <string name="btn_ListeMessages">Liste des messages</string>
-    <string name="btn_ListeContacts">Liste des contacts</string>
+    <string name="btn_ListeContacts">Liste des contacts / Messages</string>
     <string name="btn_AjouterContact">Inviter contact</string>
     <string name="btn_logout">Déconnexion</string>
     <string name="name">Nom complet</string>

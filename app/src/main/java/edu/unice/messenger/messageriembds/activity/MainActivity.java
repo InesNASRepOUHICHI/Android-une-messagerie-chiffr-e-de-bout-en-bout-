@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
         txtUsername = (EditText) findViewById(R.id.username);
         txtPassword = (EditText) findViewById(R.id.password);
         btnLogout = (Button) findViewById(R.id.btnLogout);
-        btnListeMessages = (Button) findViewById(R.id.btnListeMessages);
+       // btnListeMessages = (Button) findViewById(R.id.btnListeMessages);
         btnListeContacts = (Button) findViewById(R.id.btnListeContacts);
         btnAjouterContact = (Button) findViewById(R.id.btnAjouterContact);
 

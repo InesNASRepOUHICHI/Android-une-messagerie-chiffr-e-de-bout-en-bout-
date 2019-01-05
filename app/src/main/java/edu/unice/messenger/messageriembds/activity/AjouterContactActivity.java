@@ -74,7 +74,7 @@ public class AjouterContactActivity extends AppCompatActivity {
         String messageInvitation = "Alice[|]PING[|]" + AlicePublicKey;
 
         // Tag used to cancel the request
-        String tag_json_req = "req_login";
+        String tag_json_req = "req_create_contact";
 
         JSONObject params = new JSONObject();
         try {

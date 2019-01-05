@@ -2,10 +2,14 @@ package edu.unice.messenger.messageriembds.helper;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,9 +23,12 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<Message> mMessageList;
 
+
+
     public MessageListAdapter(Context context, List<Message> messageList) {
         mContext = context;
         mMessageList = messageList;
+
     }
 
     @Override
@@ -83,26 +90,35 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         SentMessageHolder(View itemView) {
             super(itemView);
             messageText = (TextView) itemView.findViewById(R.id.text_message_body);
+            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
 
         void bind(Message message) {
             messageText.setText(message.getMessage());
+            if(message.getDateCreated() != null) {
+                timeText.setText(message.getDateCreated().toString());
+
+            }
         }
     }
 
     private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
-        TextView messageText, nameText;
+        TextView messageText, nameText, timeText;
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
 
             messageText = (TextView) itemView.findViewById(R.id.text_message_body);
             nameText = (TextView) itemView.findViewById(R.id.text_message_name);
+            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
 
         void bind(Message message) {
             messageText.setText(message.getMessage());
             nameText.setText(message.getSender().getUsername());
+            if(message.getDateCreated() != null) {
+                timeText.setText(message.getDateCreated().toString());
+            }
         }
     }
 }

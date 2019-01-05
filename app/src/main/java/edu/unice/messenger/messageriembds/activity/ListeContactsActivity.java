@@ -56,7 +56,6 @@ public class ListeContactsActivity extends Activity {
         ContactUtils contactUtils = new ContactUtils();
         contactUtils.setContactNameToDisplayHisMessages(bt.getText().toString());
 
-        // Launching the login activity
         Intent intent = new Intent(ListeContactsActivity.this, MessageListActivity.class);
         startActivity(intent);
         finish();

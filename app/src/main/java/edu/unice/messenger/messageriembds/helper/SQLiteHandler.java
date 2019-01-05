@@ -23,10 +23,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
  
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 12;
  
     // Database Name
-    private static final String DATABASE_NAME = "MBDS-V1";
+    private static final String DATABASE_NAME = "MBDS-V2";
 
     // Login table name
     private static final String TABLE_USER = "user";
@@ -42,6 +42,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_ACCESS_TOKEN = "access_token";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_TIME_STAMP = "timestamp";
+    private static final String KEY_SENDER = "sender";
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,20 +51,20 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_LOGIN_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "("
+        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME
                 + " TEXT UNIQUE," + KEY_PASSWORD + " TEXT," + KEY_ACCESS_TOKEN + " TEXT" +")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
-        String CREATE_CONTACT_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_CONTACT + "("
+        String CREATE_CONTACT_TABLE = "CREATE TABLE " + TABLE_CONTACT + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME
                 + " TEXT UNIQUE" +")";
         db.execSQL(CREATE_CONTACT_TABLE);
 
-        String CREATE_MESSAGE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_MESSAGE + "("
+        String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME
-                + " TEXT," + KEY_TIME_STAMP
-                + " TIMESTAMP NOT NULL DEFAULT current_timestamp," + KEY_MESSAGE + " TEXT" +")";
+                + " TEXT," + KEY_TIME_STAMP + " TIMESTAMP NOT NULL DEFAULT current_timestamp,"
+                +  KEY_SENDER  + " TEXT," + KEY_MESSAGE + " TEXT" +")";
         db.execSQL(CREATE_MESSAGE_TABLE);
  
         Log.d(TAG, "Database tables created");
@@ -136,9 +137,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         List<Message> messages = new ArrayList<Message>();
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE;
+        ContactUtils contactUtils = new ContactUtils();
+        final String usernameConnected = contactUtils.getUsernameConnected();
 
-        Cursor cursor = db.rawQuery(selectQuery,null,null);
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE+ " where "+ KEY_SENDER + " = '" +usernameConnected+"';";
+
+        Log.d("Ines", selectQuery);
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
         if(cursor.moveToFirst()){
             do {
                 Message m = new Message();
@@ -156,6 +163,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 }
                 m.setDateCreated(timestamp);
                 messages.add(m);
+
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -169,6 +177,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_MESSAGE, messageBody); // username
         values.put(KEY_USERNAME, receiver); // username
+        ContactUtils contactUtils = new ContactUtils();
+        final String usernameConnected = contactUtils.getUsernameConnected();
+        values.put(KEY_SENDER, usernameConnected); // sender username
         values.put( KEY_TIME_STAMP, new Timestamp(new Date().getTime()).toString());
 
         // Inserting Row
@@ -227,6 +238,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
 
         Log.d(TAG, "Deleted all tables info from sqlite");
+    }
+
+    public void dropAllTables() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Drop older table if existed
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGE);
     }
  
 }

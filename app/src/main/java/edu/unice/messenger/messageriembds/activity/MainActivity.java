@@ -70,13 +70,13 @@ public class MainActivity extends Activity {
                 logoutUser();
             }
         });
-        btnListeMessages.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                ListeMessages();
-            }
-        });
+//        btnListeMessages.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                ListeMessages();
+//            }
+//        });
         btnListeContacts.setOnClickListener(new View.OnClickListener() {
 
             @Override

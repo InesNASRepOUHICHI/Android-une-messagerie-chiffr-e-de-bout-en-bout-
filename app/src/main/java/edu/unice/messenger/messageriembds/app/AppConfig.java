@@ -9,4 +9,7 @@ public class AppConfig {
 
     // Server send messages
     public static String URL_SEND_MESSAGE = "http://baobab.tokidev.fr/api/sendMsg";
+
+    // Server send messages
+    public static String URL_FETCH_MESSAGE = "http://baobab.tokidev.fr/api/fetchMessages";
 }

@@ -52,7 +52,7 @@
 
         <Button
             android:id="@+id/button_chatbox_send"
-            android:text="SEND"
+            android:text="Envoyer"
             android:textSize="14dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"

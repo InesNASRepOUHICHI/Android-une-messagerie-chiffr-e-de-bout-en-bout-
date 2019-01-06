@@ -167,7 +167,7 @@ public class MessageListActivity extends AppCompatActivity {
                         }
                     }
 
-                    messageList.addAll(db.getMessages());
+                    messageList.addAll(db.getMessages(contactNameToDisplayHisMessages));
                     Collections.sort(messageList);
 
                     messageList.add(new Message("", new User("", "", ""), new User("", "", ""), null));

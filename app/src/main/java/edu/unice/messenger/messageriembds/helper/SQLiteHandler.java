@@ -132,7 +132,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return contacts;
     }
 
-    public List<Message> getMessages() {
+    public List<Message> getMessages(String receiver) {
 
         List<Message> messages = new ArrayList<Message>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -140,7 +140,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         ContactUtils contactUtils = new ContactUtils();
         final String usernameConnected = contactUtils.getUsernameConnected();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE+ " where "+ KEY_SENDER + " = '" +usernameConnected+"';";
+        String selectQuery = "SELECT  * FROM " + TABLE_MESSAGE+ " where "+ KEY_SENDER + " = '" +usernameConnected+"' and "+ KEY_USERNAME +"= '" +receiver+"';";
 
         Log.d("Ines", selectQuery);
 
